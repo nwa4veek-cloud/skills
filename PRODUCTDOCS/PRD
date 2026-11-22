@@ -1,0 +1,999 @@
+# PHONE MATCH
+## PRODUCT REQUIREMENTS DOCUMENT (PRD)
+### PHASE-BASED DEVELOPMENT SPECIFICATION
+
+**Version:** 3.0  
+**Status:** Development Specification  
+**Target:** AI Coding Agents and Software Developers
+
+# 1. PRODUCT OVERVIEW
+
+## 1.1 Product Description
+
+Phone Match is a smartphone recommendation platform designed to help budget-conscious smartphone buyers in Nigeria make informed purchasing decisions.
+
+The platform helps customers choose between London-used flagship smartphones and brand-new budget smartphones based on their budget, intended usage and purchasing priorities.
+
+Customers answer five simple questions and receive two to three smartphone recommendations from the available inventory of MATT6:33 GADGET HUB.
+
+Each recommendation includes:
+- Product specifications.
+- Price.
+- Condition.
+- Personalised explanation.
+- Advantages and potential trade-offs.
+- Used-phone inspection guidance where applicable.
+- WhatsApp enquiry functionality.
+
+## 1.2 Product Vision
+
+To simplify smartphone purchasing decisions in Nigeria by helping customers find the right phone for their budget and needs.
+
+## 1.3 Core Value Proposition
+
+**Find the right phone for your budget and needs in minutes, not days.**
+
+## 1.4 Product Positioning
+
+Phone Match operates as an independent product identity powered by MATT6:33 GADGET HUB.
+
+It is initially a single-vendor recommendation platform, not a multi-vendor marketplace.
+
+## 1.5 Validated Problem
+
+Initial research involving four respondents revealed:
+
+- Three respondents took several days to over a week to decide on a smartphone.
+- One respondent was dissatisfied with their eventual purchase.
+- Three respondents struggled to narrow their priorities to two options when asked to rank what mattered most.
+
+Additional vendor observations support the problem.
+
+The initial research is directional rather than statistically representative.
+
+## 1.6 Product Hypothesis
+
+A short guided quiz that requires customers to identify their priorities, evaluates available smartphones against those priorities and explains the resulting recommendations will reduce decision-making time and improve purchasing confidence.
+
+---
+
+# 2. DEVELOPMENT STRUCTURE
+
+The product will be developed through four phases.
+
+| Phase | Name | Priority |
+|---|---|---|
+| Phase 0 | Foundation and Architecture | Essential |
+| Phase 1 | Core MVP and Customer Experience | P0 |
+| Phase 2 | Analytics and Product Optimisation | P1 |
+| Phase 3 | Advanced Intelligence and Expansion | P2 |
+
+Each phase must be completed and tested before proceeding to the next.
+
+---
+
+# PHASE 0: FOUNDATION AND ARCHITECTURE
+
+**Objective:** Establish the technical foundation, database structure, security and project architecture before developing customer-facing functionality.
+
+## 3. TECHNOLOGY STACK
+
+The recommended technology stack is:
+
+| Component | Technology |
+|---|---|
+| Frontend | Next.js |
+| Programming language | TypeScript |
+| Styling | Tailwind CSS |
+| UI components | shadcn/ui |
+| Backend | Next.js server-side functionality |
+| Database | Supabase PostgreSQL |
+| Authentication | Supabase Auth |
+| Image storage | Supabase Storage |
+| Hosting | Netlify |
+| Version control | GitHub |
+
+The coding agent may suggest a necessary adjustment if a documented technical limitation arises, but must obtain approval before changing the agreed stack.
+
+## 3.1 Application Architecture
+
+Organise the application into four logical layers:
+
+**Presentation Layer**
+- Landing page.
+- Quiz interface.
+- Results page.
+- Administrative dashboard.
+
+**Application Logic Layer**
+- Quiz validation.
+- Recommendation engine.
+- Product filtering.
+- Scoring calculations.
+- WhatsApp message generation.
+- Analytics processing.
+
+**Data Layer**
+- Product catalogue.
+- Quiz submissions.
+- Recommendations.
+- Application settings.
+- Analytics records.
+
+**Infrastructure Layer**
+- Database.
+- Authentication.
+- Image storage.
+- Hosting.
+- Environment configuration.
+
+## 3.2 Database Foundation
+
+Create the following database tables:
+
+1. `products`
+2. `quiz_submissions`
+3. `recommendations`
+4. `analytics_events`
+5. `app_settings`
+
+Use UUID primary keys and appropriate foreign-key relationships.
+
+Implement database migrations and Row Level Security.
+
+Public users must not be able to modify product records or access private administrative information.
+
+Never expose service-role credentials in frontend code.
+
+## 3.3 Product Data Structure
+
+Every product must support:
+
+- Product ID.
+- Brand.
+- Model.
+- Product name.
+- Price.
+- Condition.
+- RAM.
+- Storage.
+- Processor.
+- Display information.
+- Camera information.
+- Battery information.
+- Battery health, where applicable.
+- Physical condition, where applicable.
+- Warranty information.
+- Product image.
+- Availability.
+- Active status.
+- Product description.
+- Matching attributes.
+- Usage suitability.
+- Creation and update timestamps.
+
+Condition values:
+- NEW.
+- LONDON_USED.
+
+## 3.4 Product Matching Attributes
+
+Each product must have configurable ratings from 1 to 5 for:
+
+- Camera.
+- Battery.
+- Performance.
+- Storage.
+- Display.
+- Durability.
+- Value for money.
+
+These ratings are internal matching attributes and must not be presented as independent industry ratings.
+
+## 3.5 Security Foundation
+
+Implement:
+
+- Secure environment variables.
+- Database access policies.
+- Authentication infrastructure.
+- Server-side validation.
+- Protected administrative operations.
+- Appropriate request-rate limits.
+- Secure image storage policies.
+
+## 3.6 Phase 0 Deliverables
+
+The coding agent must provide:
+
+1. Initialised project.
+2. Configured technology stack.
+3. Application folder structure.
+4. Database schema.
+5. Database migrations.
+6. Authentication configuration.
+7. Storage configuration.
+8. Environment variable template.
+9. Security policies.
+10. Technical architecture documentation.
+
+### Phase 0 Acceptance Criteria
+
+- Application runs locally.
+- Database connection works.
+- Database migrations execute successfully.
+- Authentication infrastructure is functional.
+- Security policies are configured.
+- Environment secrets are protected.
+- Project structure is documented.
+
+**Do not proceed until the foundation is functional.**
+
+---
+
+# PHASE 1: CORE MVP AND CUSTOMER EXPERIENCE
+
+**Objective:** Build a complete working product that allows customers to answer five questions, receive relevant smartphone recommendations and contact the vendor.
+
+This is the most important phase.
+
+The product must deliver its primary value before additional features are considered.
+
+## 4. LANDING PAGE
+
+Priority: P0.
+
+### Requirements
+
+Create a modern, mobile-first landing page containing:
+
+- Phone Match branding.
+- Hero section.
+- Product explanation.
+- How-it-works section.
+- Trust and transparency section.
+- Primary CTA.
+- Vendor attribution.
+- Footer.
+
+Suggested headline:
+
+"Stop Guessing. Find the Phone That Matches Your Needs."
+
+Supporting text:
+
+"Not sure whether to buy a London-used flagship or a brand-new budget phone? Answer five simple questions and discover smartphones that match your budget, priorities and lifestyle."
+
+Primary CTA:
+
+**Find My Phone**
+
+The CTA must navigate to the recommendation quiz.
+
+Brand attribution:
+
+"Powered by MATT6:33 GADGET HUB."
+
+## 5. FIVE-QUESTION RECOMMENDATION QUIZ
+
+Priority: P0.
+
+The quiz must contain exactly five questions.
+
+Each question should appear individually with a progress indicator.
+
+### Question 1: Budget
+
+"What is your budget for a smartphone?"
+
+Options:
+
+- Below ₦100,000.
+- ₦100,000–₦150,000.
+- ₦150,000–₦200,000.
+- ₦200,000–₦300,000.
+- ₦300,000–₦500,000.
+- Above ₦500,000.
+- Enter a custom budget.
+
+Budget ranges must be configurable.
+
+### Question 2: Top Two Priorities
+
+"What are the TWO most important things you want in a smartphone?"
+
+Options:
+
+- Camera quality.
+- Battery life.
+- Gaming and performance.
+- Storage capacity.
+- Display quality.
+- Durability and reliability.
+- Overall value for money.
+
+Users must select exactly two.
+
+The system must prevent selection of a third option.
+
+### Question 3: Primary Usage
+
+"What will you primarily use your phone for?"
+
+Options:
+
+- Social media and everyday communication.
+- Photography and video recording.
+- Gaming.
+- Business and productivity.
+- Content creation.
+- General everyday use.
+
+Allow one selection.
+
+### Question 4: Condition Preference
+
+"Which type of smartphone would you prefer?"
+
+Options:
+
+- Brand-new only.
+- London-used only.
+- Open to both.
+
+The recommendation engine must respect this preference.
+
+### Question 5: Budget Flexibility
+
+"If a better phone is slightly above your budget, would you consider it?"
+
+Options:
+
+- No. My budget is strict.
+- Yes. I can add a little more.
+- Yes. I am flexible if the value justifies it.
+
+Initial flexibility rules:
+
+- Strict: 0% above budget.
+- Slightly flexible: 10% above budget.
+- Flexible: 20% above budget.
+
+All percentages must be configurable.
+
+### Quiz Functionality
+
+- Display progress.
+- Allow backward and forward navigation.
+- Preserve previous answers.
+- Validate required selections.
+- Prevent incomplete submissions.
+- Display loading feedback.
+- Handle submission errors.
+
+No customer registration is required.
+
+## 6. PRODUCT CATALOGUE MANAGEMENT
+
+Priority: P0.
+
+Build a secure vendor dashboard for managing smartphone inventory.
+
+The vendor must be able to:
+
+- Add smartphones.
+- Edit smartphones.
+- Update prices.
+- Upload product images.
+- Update specifications.
+- Set condition.
+- Configure matching attributes.
+- Set usage suitability.
+- Mark products available or unavailable.
+- Activate or deactivate products.
+- Delete products where appropriate.
+
+The dashboard must provide basic product listings and editing functionality.
+
+### Inventory Rules
+
+Only products that are:
+
+- Active.
+- Available.
+- Properly configured.
+- Within the permitted customer budget.
+- Compatible with the customer's condition preference.
+
+can be recommended.
+
+The system must not recommend sold or unavailable devices.
+
+## 7. RECOMMENDATION ENGINE
+
+Priority: P0.
+
+Implement a deterministic weighted-scoring recommendation engine.
+
+Do not use a generative AI chatbot for product selection.
+
+### 7.1 Input Variables
+
+- Budget.
+- Priority one.
+- Priority two.
+- Primary usage.
+- Condition preference.
+- Budget flexibility.
+
+### 7.2 Eligibility Filtering
+
+Exclude products that violate:
+
+- Stock availability.
+- Active status.
+- Condition preference.
+- Budget ceiling.
+- Mandatory product-data requirements.
+
+### 7.3 Scoring Formula
+
+Total Compatibility Score:
+
+`(0.35 × Priority One Score) + (0.35 × Priority Two Score) + (0.20 × Usage Compatibility) + (0.10 × Budget Compatibility)`
+
+All component scores must be normalised to 0–100.
+
+Product ratings are converted using:
+
+`((Rating - 1) / 4) × 100`
+
+Usage compatibility:
+
+- Exact match: 100.
+- Related usage: 70.
+- General-use suitability: 60.
+- No meaningful match: 30.
+
+Budget compatibility:
+
+- Within stated budget: 100.
+- Above stated budget but within permitted flexibility: 70.
+- Outside permitted budget: Excluded.
+
+### 7.4 Ranking
+
+- Rank eligible products by compatibility score.
+- Use budget compatibility as a tie-breaker.
+- Use price as a secondary tie-breaker.
+- Return a maximum of three products.
+- Return fewer if insufficient suitable products exist.
+- Never invent products to fill recommendation slots.
+
+Initial match classifications:
+
+| Score | Classification |
+|---|---|
+| 85–100 | Excellent Match |
+| 70–84 | Good Match |
+| 55–69 | Fair Match |
+| Below 55 | Weak Match |
+
+Initial minimum recommendation score: 55.
+
+All weights and thresholds must be configurable.
+
+### 7.5 Recommendation Explanations
+
+Use predefined explanation templates.
+
+Example:
+
+"Based on your preference for camera quality and battery life, this phone is a strong match because it scores highly in both areas and fits your budget."
+
+Every explanation must use actual product attributes.
+
+The system must not invent specifications or claim that an unverified device has passed inspection.
+
+### 7.6 Recommendation Testing
+
+Write automated tests for:
+
+- Budget restrictions.
+- Budget flexibility.
+- Condition preferences.
+- Priority scoring.
+- Usage matching.
+- Missing product attributes.
+- Unavailable products.
+- Equal scores.
+- Zero eligible products.
+- One eligible product.
+- Multiple eligible products.
+
+Identical inputs and catalogue data must produce identical recommendations.
+
+## 8. RECOMMENDATION RESULTS PAGE
+
+Priority: P0.
+
+After quiz submission, display:
+
+"Your Phone Matches Are Ready!"
+
+Show:
+
+- Customer's selected budget.
+- Selected priorities.
+- Intended usage.
+- Two to three recommended smartphones, where available.
+
+Each recommendation card must contain:
+
+1. Product image.
+2. Brand and model.
+3. Price.
+4. Condition.
+5. RAM and storage.
+6. Relevant specifications.
+7. Match classification.
+8. Personalised explanation.
+9. Advantages.
+10. Potential trade-offs.
+11. WhatsApp enquiry button.
+
+Allow users to:
+
+- Enquire about individual products.
+- Restart the quiz.
+- Return to change their answers.
+- Contact the vendor when no match is available.
+
+## 9. USED-PHONE CONFIDENCE CHECKLIST
+
+Priority: P0.
+
+Display an inspection guide for every London-used recommendation.
+
+Checklist:
+
+- Battery health.
+- Screen condition.
+- Touch functionality.
+- Camera functionality.
+- Charging port.
+- Speakers and microphone.
+- Network connectivity.
+- Face ID or fingerprint functionality, where applicable.
+- IMEI and device status.
+- Physical condition.
+- Warranty and return arrangements.
+
+The checklist must distinguish between general advice and actual device inspection records.
+
+## 10. WHATSAPP INTEGRATION
+
+Priority: P0.
+
+Implement WhatsApp click-to-chat functionality.
+
+Every recommended product must have an enquiry button.
+
+The generated message should include:
+
+- Product name.
+- Customer budget.
+- Selected priorities.
+- Intended usage.
+- Request for availability confirmation.
+- Request for condition and final price.
+
+The WhatsApp number must be configurable through the admin dashboard.
+
+Track WhatsApp clicks as analytics events.
+
+The application must not claim that a message was successfully delivered.
+
+## 11. BASIC ADMINISTRATIVE DASHBOARD
+
+Priority: P0.
+
+The initial dashboard must provide:
+
+- Secure administrator login.
+- Product management.
+- Product availability management.
+- Product attribute configuration.
+- WhatsApp number configuration.
+- Basic application settings.
+- Basic interaction statistics.
+
+Only authorised administrators may access the dashboard.
+
+## 12. PHASE 1 ACCEPTANCE CRITERIA
+
+Phase 1 is complete when:
+
+- Landing page works.
+- Five-question quiz works.
+- Quiz validation works.
+- Product catalogue works.
+- Vendor can manage inventory.
+- Recommendation algorithm works.
+- Recommendations are relevant and explainable.
+- Results page displays correctly.
+- Used-phone checklist works.
+- WhatsApp integration works.
+- Admin authentication works.
+- Application works on mobile and desktop.
+- Critical automated tests pass.
+- Application is deployed successfully.
+
+**Phase 1 Deliverable: A functional, production-ready Phone Match MVP.**
+
+---
+
+# PHASE 2: ANALYTICS AND PRODUCT OPTIMISATION
+
+**Objective:** Understand customer behaviour, measure product effectiveness and improve the recommendation experience using actual customer feedback.
+
+These features should only be implemented after the MVP has been tested with real customers.
+
+## 13. ADVANCED ANALYTICS DASHBOARD
+
+Priority: P1.
+
+Expand the administrative dashboard to include:
+
+- Total website visitors.
+- Total quiz starts.
+- Completed quizzes.
+- Quiz completion rate.
+- Most selected priorities.
+- Most common budget ranges.
+- Most popular usage categories.
+- Most recommended smartphones.
+- WhatsApp enquiry clicks.
+- Recommendation-to-enquiry conversion.
+
+Display relevant statistics using simple charts and summary cards.
+
+## 14. CUSTOMER FEEDBACK
+
+Priority: P1.
+
+After recommendations are displayed, ask:
+
+"How well do these recommendations match what you are looking for?"
+
+Options:
+
+- Exactly what I need.
+- Mostly suitable.
+- Not quite what I want.
+
+Allow optional comments.
+
+## 15. CUSTOMER DECISION FEEDBACK
+
+Priority: P1.
+
+Collect optional information about the customer's final decision.
+
+Questions:
+
+- Did Phone Match help you decide faster?
+- Were the recommendations relevant?
+- Did you eventually purchase a phone?
+- What influenced your final decision?
+- What prevented you from purchasing, if applicable?
+
+Do not make feedback mandatory.
+
+## 16. RECOMMENDATION SHARING
+
+Priority: P1.
+
+Allow customers to:
+
+- Copy their results link.
+- Share recommendations through WhatsApp.
+- Return to previously generated recommendations.
+
+Ensure that shared results do not expose private customer information.
+
+## 17. IMPROVED INVENTORY MANAGEMENT
+
+Priority: P1.
+
+Enhance the vendor dashboard with:
+
+- Better inventory search.
+- Product filtering.
+- Stock history.
+- Improved image management.
+- Product update timestamps.
+- Bulk availability management.
+
+## 18. PRODUCT COMPARISON
+
+Priority: P1.
+
+Allow customers to compare two or three smartphones.
+
+Comparison categories:
+
+- Price.
+- Performance.
+- Camera.
+- Battery.
+- Storage.
+- Display.
+- Condition.
+- Warranty information.
+
+Comparison must use catalogue data.
+
+## 19. PHASE 2 SUCCESS METRICS
+
+Initial targets:
+
+| Metric | Target |
+|---|---|
+| Quiz completion rate | At least 70% |
+| Quiz-to-WhatsApp conversion | At least 30% |
+| Recommendation satisfaction | At least 80% |
+| Decision time | Under one day |
+| Vendor explanation time | Reduced by 50% |
+
+These targets must be evaluated using actual customer data.
+
+## 20. PHASE 2 ACCEPTANCE CRITERIA
+
+- Analytics events are recorded accurately.
+- Dashboard metrics are calculated correctly.
+- Feedback can be submitted.
+- Feedback can be reviewed by the vendor.
+- Recommendation sharing works.
+- Product comparison works.
+- Historical recommendation records remain accessible.
+- Customer privacy is maintained.
+
+**Phase 2 Deliverable: An improved recommendation platform supported by customer behaviour and measurable performance data.**
+
+---
+
+# PHASE 3: ADVANCED INTELLIGENCE AND EXPANSION
+
+**Objective:** Introduce advanced capabilities that improve recommendation quality, automate operations and create opportunities for business expansion.
+
+These features are not required for the initial business model.
+
+## 21. AI-ASSISTED PRODUCT EXPLANATIONS
+
+Priority: P2.
+
+Introduce an AI-assisted explanation feature.
+
+Purpose:
+
+Translate technical smartphone specifications into simple, understandable language.
+
+Example:
+
+Instead of displaying only:
+
+"Snapdragon 8 Gen 1, 12GB RAM."
+
+The system may explain:
+
+"This is a powerful flagship processor suitable for demanding applications, multitasking and gaming."
+
+Requirements:
+
+- AI explanations must use verified catalogue information.
+- AI must not invent specifications.
+- AI must not independently determine stock availability.
+- AI must not replace the deterministic recommendation engine.
+- AI usage must be controlled to manage operating costs.
+
+## 22. ADVANCED RECOMMENDATION OPTIMISATION
+
+Priority: P2.
+
+Improve recommendations using:
+
+- Historical customer feedback.
+- Recommendation satisfaction.
+- Purchase outcomes.
+- Product popularity.
+- Price-to-performance comparisons.
+
+The original deterministic scoring engine must remain available as a baseline.
+
+## 23. AUTOMATED INVENTORY SYNCHRONISATION
+
+Priority: P2.
+
+Introduce inventory synchronisation with supported inventory management systems.
+
+The objective is to reduce manual product updates.
+
+Requirements:
+
+- Update stock availability.
+- Synchronise product prices.
+- Handle failed synchronisation.
+- Prevent stale inventory from being recommended.
+- Maintain an inventory update history.
+
+## 24. WHATSAPP BUSINESS API
+
+Priority: P2.
+
+Explore WhatsApp Business API integration.
+
+Potential capabilities:
+
+- Automated enquiry responses.
+- Product availability responses.
+- Customer follow-up.
+- Recommendation delivery.
+- Conversation management.
+
+This is separate from the basic click-to-chat integration in Phase 1.
+
+## 25. PAYMENT AND ORDER MANAGEMENT
+
+Priority: P2.
+
+Introduce optional e-commerce functionality if customer demand justifies it.
+
+Potential features:
+
+- Shopping cart.
+- Online payments.
+- Order confirmation.
+- Order management.
+- Purchase history.
+
+These features must not be introduced until the recommendation product has demonstrated value.
+
+## 26. MULTI-VENDOR EXPANSION
+
+Priority: P2.
+
+Explore the possibility of supporting additional vendors.
+
+Potential capabilities:
+
+- Vendor registration.
+- Vendor dashboards.
+- Independent product catalogues.
+- Vendor-specific inventory.
+- Multi-vendor recommendations.
+- Commission management.
+
+This would require a separate business-model and security review before implementation.
+
+## 27. PHASE 3 ACCEPTANCE CRITERIA
+
+- AI explanations are grounded in product data.
+- Recommendation optimisation is tested.
+- Inventory synchronisation is reliable.
+- WhatsApp automation works where implemented.
+- Payment functionality is secure where implemented.
+- Additional vendors cannot access one another's private data.
+
+**Phase 3 Deliverable: An advanced and scalable smartphone recommendation ecosystem.**
+
+---
+
+# 28. GLOBAL NON-FUNCTIONAL REQUIREMENTS
+
+These requirements apply across all development phases.
+
+## Performance
+- Optimise for Nigerian mobile networks.
+- Compress product images.
+- Minimise unnecessary scripts.
+- Use efficient database queries.
+- Aim for a mobile Lighthouse performance score of at least 85 under representative test conditions.
+
+## Compatibility
+Support modern:
+- Chrome.
+- Safari.
+- Firefox.
+- Edge.
+
+Support:
+- Android.
+- iOS.
+- Tablets.
+- Desktop browsers.
+
+## Security
+- Protect administrative routes.
+- Validate server-side inputs.
+- Use secure authentication.
+- Protect database records.
+- Keep credentials in environment variables.
+- Apply appropriate access controls.
+
+## Privacy
+- Do not require registration for the MVP.
+- Collect only necessary information.
+- Provide a privacy notice.
+- Restrict access to customer records.
+- Establish an appropriate data-retention policy.
+
+## Usability
+- Mobile-first design.
+- Clear navigation.
+- Simple English.
+- Readable typography.
+- Minimal typing.
+- Consistent design components.
+
+---
+
+# 29. DEVELOPMENT RULES FOR THE AI CODING AGENT
+
+The AI coding agent must follow these instructions throughout development.
+
+1. Treat this PRD as the authoritative product specification.
+2. Build the application phase by phase.
+3. Do not skip acceptance testing.
+4. Do not implement future-phase features prematurely.
+5. Do not introduce unapproved technologies.
+6. Keep the recommendation engine deterministic.
+7. Keep product information separate from recommendation logic.
+8. Do not fabricate product information.
+9. Keep all administrative operations secure.
+10. Use reusable and maintainable components.
+11. Document important technical decisions.
+12. Maintain database migrations.
+13. Write automated tests for critical functionality.
+14. Report completed work and outstanding issues after each phase.
+
+## Development Authorisation Rule
+
+The coding agent must not automatically proceed through all four phases.
+
+After completing a phase, it must:
+
+- Present completed deliverables.
+- Report test results.
+- Identify outstanding issues.
+- Demonstrate that acceptance criteria have been satisfied.
+- Wait for approval before starting the next phase.
+
+---
+
+# 30. FINAL PRODUCT DEFINITION
+
+Phone Match is successful when a customer can:
+
+1. Visit the platform.
+2. Answer five simple questions.
+3. Receive relevant smartphone recommendations.
+4. Understand why each phone was recommended.
+5. Understand the compromises involved.
+6. Contact the vendor through WhatsApp.
+
+And when the vendor can:
+
+1. Manage available smartphones.
+2. Update prices and conditions.
+3. Configure product matching attributes.
+4. Manage inventory availability.
+5. Review customer interaction data.
+
+The product must prioritise relevance over quantity, transparency over exaggerated claims and customer confidence over aggressive selling.
+
+# PHONE MATCH
+
+**Less Confusion. Better Choices. The Right Phone.**
+
+*Powered by MATT6:33 GADGET HUB.*
